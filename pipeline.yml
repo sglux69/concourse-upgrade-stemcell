@@ -37,8 +37,8 @@ jobs:
   - task: upload-stemcell
     file: upgrade-stemcell/tasks/upload-stemcell/task.yml
     params:
-      OPSMAN_CLIENT-ID: {{opsman_admin_username}}
-      OPSMAN_CLIENT-SECRET: {{opsman_admin_password}}
+      OPSMAN_CLIENT_ID: {{opsman_client_id}}
+      OPSMAN_CLIENT_SECRET: {{opsman_client_secret}}
       OPSMAN_HOST: {{opsman_host}}
 
 - name: apply-changes
@@ -54,12 +54,12 @@ jobs:
   - task: wait-opsman-clear
     file: pcf-pipelines/tasks/wait-opsman-clear/task.yml
     params:
-      OPSMAN_CLIENT-ID: {{opsman_admin_username}}
-      OPSMAN_CLIENT-SECRET: {{opsman_admin_password}}
+      OPSMAN_CLIENT_ID: {{opsman_client_id}}
+      OPSMAN_CLIENT_SECRET: {{opsman_client_secret}}
       OPSMAN_DOMAIN_OR_IP_ADDRESS: {{opsman_host}}
   - task: apply-changes
     file: pcf-pipelines/tasks/apply-changes/task.yml
     params:
-      OPSMAN_CLIENT-ID: {{opsman_admin_username}}
-      OPSMAN_CIENT-SECRET: {{opsman_admin_password}}
+      OPSMAN_CLIENT_ID: {{opsman_client_id}}
+      OPSMAN_CLIENT_SECRET: {{opsman_client_secret}}
       OPSMAN_DOMAIN_OR_IP_ADDRESS: {{opsman_host}}
