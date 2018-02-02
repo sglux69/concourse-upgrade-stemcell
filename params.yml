@@ -29,5 +29,5 @@ pivnet_token: xJRaftFkyYqkGBssAyXr
 opsman_host: opsmanager.sb.sdppcf.com
 
 # Ops Manager Admin Credentials
-opsman_client_id: con-admin
+opsman_client_id: con-client
 opsman_client_secret: mypassword
