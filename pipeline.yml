@@ -1,0 +1,65 @@
+resource_types:
+- name: pivnet
+  type: docker-image
+  source:
+   repository: pivotalcf/pivnet-resource
+   tag: latest-final
+
+resources:
+- name: pcf-pipelines
+  type: git
+  source:
+    uri: https://github.com/pivotal-cf/pcf-pipelines.git
+    branch: master
+
+- name: stemcell
+  type: pivnet
+  source:
+    api_token: {{pivnet_token}}
+    product_slug: stemcells
+    product_version: {{stemcell_version_regex}}
+    sort_by: semver
+
+- name: upgrade-stemcell
+  type: git
+  source:
+    uri: https://github.com/sturadnidge/concourse-upgrade-stemcell.git
+    branch: master
+
+jobs:
+- name: get-and-upload-stemcell
+  plan:
+  - get: stemcell
+    params:
+      globs:
+      - {{iaas_type}}
+  - get: upgrade-stemcell
+  - task: upload-stemcell
+    file: upgrade-stemcell/tasks/upload-stemcell/task.yml
+    params:
+      OPSMAN_USERNAME: {{opsman_admin_username}}
+      OPSMAN_PASSWORD: {{opsman_admin_password}}
+      OPSMAN_HOST: {{opsman_host}}
+
+- name: apply-changes
+  plan:
+  - get: stemcell
+    params:
+      globs:
+      - {{iaas_type}}
+    passed:
+    - get-and-upload-stemcell
+    trigger: true
+  - get: pcf-pipelines
+  - task: wait-opsman-clear
+    file: pcf-pipelines/tasks/wait-opsman-clear/task.yml
+    params:
+      OPSMAN_USERNAME: {{opsman_admin_username}}
+      OPSMAN_PASSWORD: {{opsman_admin_password}}
+      OPSMAN_DOMAIN_OR_IP_ADDRESS: {{opsman_host}}
+  - task: apply-changes
+    file: pcf-pipelines/tasks/apply-changes/task.yml
+    params:
+      OPSMAN_USERNAME: {{opsman_admin_username}}
+      OPSMAN_PASSWORD: {{opsman_admin_password}}
+      OPSMAN_DOMAIN_OR_IP_ADDRESS: {{opsman_host}}
