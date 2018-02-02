@@ -24,9 +24,9 @@ inputs:
   - name: upgrade-stemcell
 
 params:
-  OPSMAN_CLIENT_ID:
-  OPSMAN_CLIENT_SECRET:
-  OPSMAN_HOST:
+  OPSMAN_CLIENT_ID: con-client
+  OPSMAN_CLIENT_SECRET: mypassword
+  OPSMAN_HOST: opsmanager.sb.sdppcf.com
 
 run:
   path: upgrade-stemcell/tasks/upload-stemcell/task.sh
