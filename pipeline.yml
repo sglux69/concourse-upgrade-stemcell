@@ -23,7 +23,7 @@ resources:
 - name: upgrade-stemcell
   type: git
   source:
-    uri: https://github.com/sturadnidge/concourse-upgrade-stemcell.git
+    uri: https://github.com/sglux69/concourse-upgrade-stemcell.git
     branch: master
 
 jobs:
@@ -37,8 +37,8 @@ jobs:
   - task: upload-stemcell
     file: upgrade-stemcell/tasks/upload-stemcell/task.yml
     params:
-      OPSMAN_USERNAME: {{opsman_admin_username}}
-      OPSMAN_PASSWORD: {{opsman_admin_password}}
+      OPSMAN_CLIENT-ID: {{opsman_admin_username}}
+      OPSMAN_CLIENT-SECRET: {{opsman_admin_password}}
       OPSMAN_HOST: {{opsman_host}}
 
 - name: apply-changes
@@ -54,12 +54,12 @@ jobs:
   - task: wait-opsman-clear
     file: pcf-pipelines/tasks/wait-opsman-clear/task.yml
     params:
-      OPSMAN_USERNAME: {{opsman_admin_username}}
-      OPSMAN_PASSWORD: {{opsman_admin_password}}
+      OPSMAN_CLIENT-ID: {{opsman_admin_username}}
+      OPSMAN_CLIENT-SECRET: {{opsman_admin_password}}
       OPSMAN_DOMAIN_OR_IP_ADDRESS: {{opsman_host}}
   - task: apply-changes
     file: pcf-pipelines/tasks/apply-changes/task.yml
     params:
-      OPSMAN_USERNAME: {{opsman_admin_username}}
-      OPSMAN_PASSWORD: {{opsman_admin_password}}
+      OPSMAN_CLIENT-ID: {{opsman_admin_username}}
+      OPSMAN_CIENT-SECRET: {{opsman_admin_password}}
       OPSMAN_DOMAIN_OR_IP_ADDRESS: {{opsman_host}}

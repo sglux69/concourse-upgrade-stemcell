@@ -27,7 +27,7 @@ function main() {
 
   printf "Uploading %s to %s ...\n" "${stemcell}" "${OPSMAN_HOST}"
 
-  om-linux -t https://${OPSMAN_HOST} -c ${OPSMAN_USERNAME} -s ${OPSMAN_PASSWORD} -k upload-stemcell -s ${stemcell}
+  om-linux -t https://${OPSMAN_HOST} -c ${OPSMAN_CLIENT-ID} -s ${OPSMAN_CLIENT-SECRET} -k upload-stemcell -s ${stemcell}
 
 }
 

@@ -24,8 +24,8 @@ inputs:
   - name: upgrade-stemcell
 
 params:
-  OPSMAN_USERNAME:
-  OPSMAN_PASSWORD:
+  OPSMAN_CLIENT-ID:
+  OPSMAN_CLIENT-SECRET:
   OPSMAN_HOST:
 
 run:
