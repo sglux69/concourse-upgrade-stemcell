@@ -9,7 +9,7 @@ resources:
 - name: pcf-pipelines
   type: git
   source:
-    uri: https://github.com/pivotal-cf/pcf-pipelines.git
+    uri: https://github.com/sglux69/concourse-upgrade-stemcell/pcf-pipeline.git
     branch: master
 
 - name: stemcell
