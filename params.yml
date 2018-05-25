@@ -26,8 +26,8 @@ pivnet_token:
 
 # Ops Manager fqdn or IP address
 # eg. myopsman.mydomain.com
-opsman_host: opsmanager.sb.sdppcf.com
+opsman_host: 
 
 # Ops Manager Admin Credentials
-opsman_client_id: con-admin
-opsman_client_secret: mypassword
+opsman_client_id: 
+opsman_client_secret: 
