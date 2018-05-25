@@ -19,15 +19,15 @@ stemcell_version_regex: ^3445(\.\d*)?$
 iaas_type: "*aws*"
 
 # Key to get git resources
-git_private_key: ~/.ssh/id_rsa
+git_private_key: 
 
 # Pivotal Net Token to download binaries from https://network.pivotal.io
-pivnet_token: xJRaftFkyYqkGBssAyXr
+pivnet_token:
 
 # Ops Manager fqdn or IP address
 # eg. myopsman.mydomain.com
-opsman_host: opsmanager.sb.sdppcf.com
+opsman_host: 
 
 # Ops Manager Admin Credentials
-opsman_client_id: con-client
-opsman_client_secret: mypassword
+opsman_client_id: 
+opsman_client_secret: 
